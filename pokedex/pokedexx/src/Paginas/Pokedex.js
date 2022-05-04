@@ -58,7 +58,7 @@ function Pokedex (){
 
         </Cabecalho>
         <Cards>
-            <Card/>
+            
         </Cards>
         <Rodape>
 

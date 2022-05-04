@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 import { goToPage } from "../Routes/Coordinator";
+import { ContextoPokemon } from "../Context/Context";
+import Card from "./Card";
+import axios from "axios";
 
 
 
@@ -35,7 +38,13 @@ const Cabecalho = styled.div`
 
 `
 const Cards = styled.div`
-    height: 500px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: blue;
 `
 
 const Rodape = styled.div`
@@ -49,10 +58,21 @@ function HomePage (){
 
     const navigate = useNavigate()
 
+    const listaDePokemon = useContext(ContextoPokemon)
+
+    
+
+    const mostrarCards = listaDePokemon.map((elemento)=>{
+        return <Card nome={elemento.name} url={elemento.url}/>
+    })
    
+    
+      
 
     return(
         <>
+
+
         <Cabecalho>
             <img src="https://1000marken.net/wp-content/uploads/2021/01/logo-Pokemon.png"/>
             <h1>Lista de Pokemons</h1>
@@ -62,7 +82,7 @@ function HomePage (){
 
         </Cabecalho>
         <Cards>
-
+            {mostrarCards}
         </Cards>
         <Rodape>
 
