@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState,useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 import { goToPage } from "../Routes/Coordinator";
 import { ContextoPokemon } from "../Context/Context";
 import Card from "./Card";
 import axios from "axios";
+import {ContextoPokedex} from "../Context/Context"
 
 
 
@@ -54,20 +55,30 @@ const Rodape = styled.div`
 
 
 
-function HomePage (){
-
+function HomePage (props){
+    
     const navigate = useNavigate()
-
+    
+    useEffect(()=>{
+        props.funcaoRecuperaDados(add)
+    },[])
+    
+    
     const listaDePokemon = useContext(ContextoPokemon)
+    const [add, setAdd]=useState([])
 
+    const onClickAddPokemon =(receber)=>{
+        let array=[...add, receber]
+        setAdd(array)
+    }
     
 
     const mostrarCards = listaDePokemon.map((elemento)=>{
-        return <Card nome={elemento.name} url={elemento.url}/>
+        return <Card onClickAddPokemon={onClickAddPokemon} nome={elemento.name} url={elemento.url}/>
     })
-   
     
-      
+    
+
 
     return(
         <>

@@ -9,7 +9,7 @@ import axios from 'axios';
 function App() {
 
   const [listaPoke,setListaPoke] = useState([])
-
+  const [dadosPokedex, setDadosPokedex]=useState([])
 
   useEffect(()=>{
 
@@ -20,13 +20,15 @@ function App() {
      })
     
   },[])
+  console.log(dadosPokedex);
   
-  
-
+  const recuperaDados =(dados)=>{
+    setDadosPokedex(dados)
+  }
   
   return (
-   <ContextoPokemon.Provider value={listaPoke}>
-    <Telas/>
+   <ContextoPokemon.Provider value= {listaPoke}>
+    <Telas funcaoRecuperaDados={recuperaDados} />
    </ContextoPokemon.Provider>
   )
 

@@ -57,7 +57,7 @@ function Pokedex (){
             >Lista de Pokemons</button>
 
         </Cabecalho>
-        <Cards>
+        <Cards >
             
         </Cards>
         <Rodape>
