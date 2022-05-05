@@ -5,7 +5,7 @@ import { goToPage } from "../Routes/Coordinator";
 import { ContextoPokemon } from "../Context/Context";
 import Card from "./Card";
 import axios from "axios";
-import {ContextoPokedex} from "../Context/Context"
+
 
 
 
@@ -55,29 +55,32 @@ const Rodape = styled.div`
 
 
 
-function HomePage (props){
+function HomePage (){
     
     const navigate = useNavigate()
     
-    useEffect(()=>{
-        props.funcaoRecuperaDados(add)
-    },[])
-    
     
     const listaDePokemon = useContext(ContextoPokemon)
-    const [add, setAdd]=useState([])
+    const [listaPokedex, setListaPokedex]=useState([])
+
+    useEffect(()=>{
+        listaDePokemon[1](listaPokedex)
+    },[listaPokedex])
+
 
     const onClickAddPokemon =(receber)=>{
-        let array=[...add, receber]
-        setAdd(array)
+        let array=[...listaPokedex, receber]
+        setListaPokedex(array)
+        alert("Pokemon Adicionado")
+        
     }
     
 
-    const mostrarCards = listaDePokemon.map((elemento)=>{
-        return <Card onClickAddPokemon={onClickAddPokemon} nome={elemento.name} url={elemento.url}/>
+    const mostrarCards = listaDePokemon[0].map((elemento)=>{
+        return <Card onClickAddPokemon={onClickAddPokemon} nome={elemento.name} url={elemento.url} descrever={listaDePokemon[3]}/>
     })
     
-    
+
 
 
     return(

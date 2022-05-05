@@ -10,6 +10,7 @@ function App() {
 
   const [listaPoke,setListaPoke] = useState([])
   const [dadosPokedex, setDadosPokedex]=useState([])
+  const [descreverPoke, setDescreverPoke] = useState("")
 
   useEffect(()=>{
 
@@ -27,8 +28,8 @@ function App() {
   }
   
   return (
-   <ContextoPokemon.Provider value= {listaPoke}>
-    <Telas funcaoRecuperaDados={recuperaDados} />
+   <ContextoPokemon.Provider value= {[listaPoke,recuperaDados,dadosPokedex,setDescreverPoke,descreverPoke]}>
+    <Telas/>
    </ContextoPokemon.Provider>
   )
 

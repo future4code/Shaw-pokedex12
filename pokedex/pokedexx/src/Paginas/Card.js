@@ -57,9 +57,12 @@ function Card(props) {
        <h3>{props.nome}</h3>
        <img src={imagem}/>
        <div>
-       <button onClick={()=>props.onClickAddPokemon(props.url)}>Adicionar</button>
+       <button onClick={()=>props.onClickAddPokemon({url:props.url,nome:props.nome})}>Adicionar</button>
        <button
-       onClick={()=>goToPage(navigate,'descPoke')}
+       onClick={()=>{
+        goToPage(navigate,'descPoke')
+        props.descrever(props.url)
+       }}
        >Detalhes</button>
        </div>
     
