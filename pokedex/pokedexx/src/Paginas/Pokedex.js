@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 import { goBack } from "../Routes/Coordinator";
-import Card from "./Card";
+import { ContextoPokemon } from "../Context/Context";
+import CardPokedex from "../Paginas/CardPokedex";
 
 const Cabecalho = styled.div`
     display: flex;
@@ -34,7 +35,13 @@ const Cabecalho = styled.div`
 
 `
 const Cards = styled.div`
-    height: 500px;
+     height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: blue;
 `
 
 const Rodape = styled.div`
@@ -47,6 +54,27 @@ const Rodape = styled.div`
 function Pokedex (){
 
     const navigate = useNavigate()
+
+    const listaDePokemon = useContext(ContextoPokemon)
+
+
+    const excluirPokemon = (pokemon) =>{
+        const novaLista = listaDePokemon[2].filter((elemento)=>{
+            return elemento.nome != pokemon
+        })
+        listaDePokemon[1](novaLista)
+        alert("pokemon excluido")
+    }
+
+
+     const mostrarCard = listaDePokemon[2].map((elemento)=>{
+        return <CardPokedex url={elemento.url} nome={elemento.nome} excluirPokemon={excluirPokemon} descrever={listaDePokemon[3]}/>
+    })
+
+
+   
+
+
     return(
         <>
          <Cabecalho>
@@ -58,7 +86,7 @@ function Pokedex (){
 
         </Cabecalho>
         <Cards >
-            
+            {mostrarCard}
         </Cards>
         <Rodape>
 

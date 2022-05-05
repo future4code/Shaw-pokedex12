@@ -5,12 +5,12 @@ import Pokedex from "../Paginas/Pokedex"
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 
-function Telas (props){
+function Telas (){
 
     return(
         <BrowserRouter>
             <Routes>
-                <Route index element={<HomePage funcaoRecuperaDados={props.funcaoRecuperaDados}/>}/>
+                <Route index element={<HomePage/>}/>
                 <Route path='pokedex' element={<Pokedex/>}/>
                 <Route path='descPoke' element={<Descricao/>}/>
             </Routes>

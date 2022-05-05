@@ -36,11 +36,12 @@ const Cartao = styled.div`
 `
 
 
-function Card(props) {
+function CardPokedex(props) {
 
     const navigate = useNavigate()
     const [imagem,SetImagem] = useState("")
 
+    
     useEffect(()=>{
         axios.get(props.url).then((res)=>{
             SetImagem(res.data.sprites.front_default)
@@ -49,6 +50,7 @@ function Card(props) {
         })
     },[])
 
+   
 
     
 
@@ -57,9 +59,12 @@ function Card(props) {
        <h3>{props.nome}</h3>
        <img src={imagem}/>
        <div>
-       <button onClick={()=>props.onClickAddPokemon(props.url)}>Adicionar</button>
+       <button onClick={()=>props.excluirPokemon(props.nome)}>Excluir</button>
        <button
-       onClick={()=>goToPage(navigate,'descPoke')}
+       onClick={()=>{
+        goToPage(navigate,'descPoke')
+        props.descrever(props.url)
+       }}
        >Detalhes</button>
        </div>
     
@@ -67,4 +72,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default CardPokedex;
