@@ -1,7 +1,7 @@
 import React, { useState,useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
-import { goToPage } from "../Routes/Coordinator";
+import { goToPage } from "../routers/coordenation";
 import { ContextoPokemon } from "../Context/Context";
 import Card from "./Card";
 import axios from "axios";
@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 
-const Cabecalho = styled.div`
+ export const Cabecalho = styled.div`
     display: flex;
     background-color: lightblue;
     align-items: center;

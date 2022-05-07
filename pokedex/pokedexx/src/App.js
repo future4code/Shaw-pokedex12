@@ -1,39 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import Telas from './Routes/Route';
-import {ContextoPokemon} from './Context/Context'
-import axios from 'axios';
-
-
-
+import { GlobalStyle } from "./styled-app";
+import Routers from "./routers/Routes";
+import GlobalState from "./global/GlobalState";
+import { ThemeProvider } from '@mui/material';
+import theme from "./constants/theme";
 
 function App() {
 
-  const [listaPoke,setListaPoke] = useState([])
-  const [dadosPokedex, setDadosPokedex]=useState([])
-  const [descreverPoke, setDescreverPoke] = useState("")
-
-  useEffect(()=>{
-
-     axios.get("https://pokeapi.co/api/v2/pokemon").then((res)=>{
-       setListaPoke(res.data.results)
-     }).catch((err)=>{
-       console.log(err)
-     })
-    
-  },[])
-  console.log(dadosPokedex);
-  
-  const recuperaDados =(dados)=>{
-    setDadosPokedex(dados)
-  }
-  
   return (
-   <ContextoPokemon.Provider value= {[listaPoke,recuperaDados,dadosPokedex,setDescreverPoke,descreverPoke]}>
-    <Telas/>
-   </ContextoPokemon.Provider>
-  )
+    <ThemeProvider theme={theme}>
+      <GlobalState>
+        <GlobalStyle />
+        <Routers />
 
-
+      </GlobalState>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
