@@ -1,0 +1,9 @@
+{
+  "name": "pokedex",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.27.2",
+    "styled-components": "^5.3.5"
+  }
+}
